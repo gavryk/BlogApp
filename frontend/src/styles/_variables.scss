@@ -1,12 +1,6 @@
 :root {
   //colors
-  --base--color--red: #f80b0b;
-  --base--color--red-2: #f14b4b;
-  --base--color--green: #3bd40d;
-  --base--color--green-2: #6eee47;
-  --base--color--orange: #fe5f1e;
-  --base--color--orange-2: #f8763a;
-  --base--color--yellow: #ffdf8c;
+  --base--color--white: #fff;
   --base--color--grey: #f6f6f6;
   --base--color--grey-2: #f9f9f9;
   --base--color--grey-3: #f7f7f7;
@@ -14,9 +8,16 @@
   --base--color--grey-5: #f4f4f4;
   --base--color--grey-6: #b6b6b6;
   --base--color--grey-7: #8d8d8d;
+  --base--color--darkgrey: #383838;
   --base--color--black: #232323;
-  --base--color--black-2: #383838;
-  --base--color--white: #fff;
+
+  --base--color--red: #f80b0b;
+  --base--color--red-2: #f14b4b;
+  --base--color--green: #3bd40d;
+  --base--color--green-2: #6eee47;
+  --base--color--orange: #fe5f1e;
+  --base--color--orange-2: #f8763a;
+  --base--color--yellow: #ffdf8c;
 
   //container
   --base--container--widht: 90%;
