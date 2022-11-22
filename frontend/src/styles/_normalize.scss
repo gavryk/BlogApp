@@ -16,9 +16,19 @@ html {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  min-height: calc(100vh - 50px);
   color: var(--base--color--black);
   background-color: var(--base--color--grey-4);
+}
+
+.container-md {
+  @include container('1024px');
+}
+.container {
+  @include container('1380px');
+}
+
+.container-lg {
+  @include container('1920px');
 }
 
 h1,

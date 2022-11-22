@@ -1,0 +1,16 @@
+.layout {
+  position: relative;
+  &.login {
+    background-color: var(--base--color--main);
+  }
+}
+
+.layoutWrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.content {
+  margin: var(--base--spaces--10) 0;
+}

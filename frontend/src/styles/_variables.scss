@@ -11,13 +11,9 @@
   --base--color--darkgrey: #383838;
   --base--color--black: #232323;
 
+  --base--color--main: #b9e7e7;
   --base--color--red: #f80b0b;
   --base--color--red-2: #f14b4b;
-  --base--color--green: #3bd40d;
-  --base--color--green-2: #6eee47;
-  --base--color--orange: #fe5f1e;
-  --base--color--orange-2: #f8763a;
-  --base--color--yellow: #ffdf8c;
 
   //container
   --base--container--widht: 90%;
@@ -57,7 +53,14 @@
   --base--font--size--h5: 20px;
 
   //sizes
-  --base--logo-size: 60px;
-  --base--logo-size-md: 40px;
-  --base--logo-size-sm: 30px;
+  --base--logo-size-sm: 80px;
+  --base--logo-size-md: 100px;
+  --base--logo-size-lg: 130px;
+}
+
+@mixin container($width) {
+  width: #{$width};
+  max-width: 96%;
+  margin: 0 auto;
+  position: relative;
 }
