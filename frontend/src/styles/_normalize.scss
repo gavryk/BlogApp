@@ -50,6 +50,7 @@ h3,
 h4,
 h5 {
   color: var(--base--color--black);
+  transition: all 0.4s ease-in-out;
 }
 
 h1 {
@@ -117,7 +118,7 @@ a {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--base--color--orange);
+  background: var(--base--color--main);
   border-radius: 2px;
 }
 

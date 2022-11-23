@@ -1,20 +1,25 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { MainLayout } from './layouts';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Single from './pages/Single';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route path="" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/post/:id" element={<Single />} />
-      </Route>
-    </Routes>
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<MainLayout />}>
+          <Route path="" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/post/:id" element={<Single />} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
   );
 };
 

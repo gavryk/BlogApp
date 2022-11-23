@@ -13,11 +13,11 @@ export const MainLayout: React.FC = () => {
       <div className={clsx(styles.layout, styles[path])}>
         <div className="container">
           <div className={styles.layoutWrapper}>
-            <Header />
+            {pathname !== '/login' && pathname !== '/register' && <Header />}
             <div className={styles.content}>
               <Outlet />
             </div>
-            <Footer />
+            {pathname !== '/login' && pathname !== '/register' && <Footer />}
           </div>
         </div>
       </div>

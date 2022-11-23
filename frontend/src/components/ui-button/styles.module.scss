@@ -1,0 +1,161 @@
+.uibutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--base--spaces--3) var(--base--spaces--7);
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  border: none;
+  min-width: 100px;
+  font-size: var(--base--font--size-md);
+  line-height: 1.3;
+  @media (max-width: 768px) {
+    min-width: 80px;
+    padding: var(--base--spaces--2) var(--base--spaces--4);
+  }
+  &.fluid {
+    width: 100%;
+  }
+  a,
+  span {
+    transition: all 0.3s ease-in-out;
+  }
+  svg {
+    margin-right: var(--base--spaces--2);
+    font-size: var(--base--font--size);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--green);
+    color: #fff;
+    a,
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.text {
+  background-color: transparent;
+  color: var(--base--color--grey-6);
+  padding: 0;
+  @media (max-width: 576px) {
+    font-size: var(--base--font--size-sm);
+  }
+  a,
+  span {
+    color: var(--base--color--grey-6);
+  }
+  &:hover {
+    color: var(--base--color--green);
+    background-color: transparent;
+    a,
+    span {
+      color: var(--base--color--green);
+    }
+  }
+}
+
+.contained {
+  color: var(--base--color--white);
+  background-color: var(--base--color--grey-2);
+  &:hover,
+  &.active {
+    background-color: var(--base--color--black);
+  }
+}
+
+.contained.green {
+  background-color: var(--base--color--green);
+  color: var(--base--color--white);
+  a,
+  span {
+    color: var(--base--color--white);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--green-2);
+  }
+}
+
+.contained.black {
+  background-color: var(--base--color--black);
+  color: var(--base--color--white);
+  a,
+  span {
+    color: var(--base--color--white);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--black-2);
+  }
+}
+
+.contained.red {
+  background-color: var(--base--color--red);
+  color: var(--base--color--white);
+  a,
+  span {
+    color: var(--base--color--white);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--red-2);
+  }
+}
+
+.outlined {
+  border: 1px solid var(--base--color--black);
+  background-color: transparent;
+  color: var(--base--color--black);
+  a,
+  span {
+    color: var(--base--color--black);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--black);
+    color: var(--base--color--white);
+    a {
+      color: var(--base--color--white);
+    }
+  }
+}
+
+.outlined.green {
+  border: 1px solid var(--base--color--green);
+  background-color: transparent;
+  color: var(--base--color--green);
+  a,
+  span {
+    color: var(--base--color--green);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--green);
+    color: var(--base--color--white);
+    a {
+      color: var(--base--color--white);
+    }
+  }
+}
+
+.outlined.red {
+  border: 1px solid var(--base--color--red);
+  background-color: transparent;
+  color: var(--base--color--red);
+  a,
+  span {
+    color: var(--base--color--red);
+  }
+  &:hover,
+  &.active {
+    background-color: var(--base--color--red);
+    color: var(--base--color--white);
+    a {
+      color: var(--base--color--white);
+    }
+  }
+}

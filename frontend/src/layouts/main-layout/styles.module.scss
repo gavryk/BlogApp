@@ -1,6 +1,7 @@
 .layout {
   position: relative;
-  &.login {
+  &.login,
+  &.register {
     background-color: var(--base--color--main);
   }
 }
