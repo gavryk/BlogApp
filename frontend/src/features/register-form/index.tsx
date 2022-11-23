@@ -19,7 +19,11 @@ export const RegisterForm: React.FC = () => {
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   return (
-    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className={styles.registerForm}>
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={styles.registerForm}>
       <UITypography variant="h2" fontWeight="bold" bottomSpace="sm" textAlign="center">
         Register
       </UITypography>

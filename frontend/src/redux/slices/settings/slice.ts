@@ -3,10 +3,12 @@ import { SettingsSliceTypes } from './types';
 
 const initialState: SettingsSliceTypes = {
   menu: [
-    { title: 'Test', url: '/' },
-    { title: 'logout', url: '/' },
+    { title: 'Home', url: '/' },
+    { title: 'About', url: '/' },
+    { title: 'Services', url: '/' },
+    { title: 'Contact', url: '/' },
   ],
-  auth: false,
+  auth: true,
 };
 
 export const settingsSlice = createSlice({

@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  a {
+    color: var(--base--color--black-2);
+    text-transform: uppercase;
+    padding: 0 var(--base--spaces--3);
+    &:hover {
+      color: var(--base--color--main);
+    }
+  }
+}

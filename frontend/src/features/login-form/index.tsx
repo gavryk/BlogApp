@@ -18,7 +18,11 @@ export const LoginForm: React.FC = () => {
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   return (
-    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className={styles.loginForm}>
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={styles.loginForm}>
       <UITypography variant="h2" fontWeight="bold" bottomSpace="sm" textAlign="center">
         Login
       </UITypography>

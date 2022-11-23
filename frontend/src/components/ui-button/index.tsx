@@ -6,6 +6,7 @@ interface ButtonProps {
   children: React.ReactNode;
   active?: boolean;
   fluid?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   color?: 'orange' | 'black' | 'red' | 'green';
   variants?: 'contained' | 'outlined' | 'text';
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -14,7 +15,16 @@ interface ButtonProps {
 
 export const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { children, active, color = 'green', variants = 'contained', type = 'button', onClick, fluid },
+    {
+      children,
+      active,
+      color = 'green',
+      size = 'md',
+      variants = 'contained',
+      type = 'button',
+      onClick,
+      fluid,
+    },
     ref,
   ) => {
     return (
@@ -22,7 +32,7 @@ export const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         onClick={onClick}
-        className={clsx(styles.uibutton, styles[variants], {
+        className={clsx(styles.uibutton, styles[variants], styles[size], {
           [styles.black]: color === 'black',
           [styles.red]: color === 'red',
           [styles.green]: color === 'green',
