@@ -4,7 +4,7 @@ import { UIInput } from '../components';
 const Home: React.FC = () => {
   return (
     <div>
-      <UIInput type="text" />
+      <h1>Home</h1>
     </div>
   );
 };

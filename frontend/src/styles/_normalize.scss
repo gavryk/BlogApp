@@ -53,6 +53,12 @@ h5 {
   transition: all 0.4s ease-in-out;
 }
 
+a {
+  &:hover {
+    color: var(--base--color--main);
+  }
+}
+
 h1 {
   font-size: var(--base--font--size--h1);
   @media (max-width: 768px) {
