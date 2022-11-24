@@ -4,7 +4,7 @@ import LogoImg from '../../assets/img/logo-2.svg';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import { settingsSelector } from '../../redux/slices/settings/selectors';
-import { HeaderHavigation } from '../header-navigation';
+import { HeaderHavigation } from './header-navigation';
 
 export const Header: React.FC = () => {
   const containerRef = useRef(null);

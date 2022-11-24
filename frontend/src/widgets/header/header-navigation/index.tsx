@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { UIBurger, UIButton, UINavigate } from '../../components';
-import { settingsSelector } from '../../redux/slices/settings/selectors';
-import { setMenuToggle } from '../../redux/slices/settings/slice';
-import { MenuItem } from '../../redux/slices/settings/types';
+import { UIBurger, UIButton, UINavigate } from '../../../components';
+import { settingsSelector } from '../../../redux/slices/settings/selectors';
+import { setMenuToggle } from '../../../redux/slices/settings/slice';
+import { MenuItem } from '../../../redux/slices/settings/types';
 import { useUpdateDimension } from './model';
 import styles from './styles.module.scss';
 
@@ -24,6 +24,14 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
   const { menuOpened } = useSelector(settingsSelector);
   const width = useUpdateDimension();
 
+  const openMenu = () => {
+    dispatch(setMenuToggle(!menuOpened));
+  };
+
+  const closeMenu = () => {
+    menuOpened && dispatch(setMenuToggle(false));
+  };
+
   useEffect(() => {
     const clickOffMenuSlide = (event: MouseEvent) => {
       const _event = event as MenuClick;
@@ -35,21 +43,13 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
     document.body.addEventListener('click', clickOffMenuSlide);
 
     return () => document.body.removeEventListener('click', clickOffMenuSlide);
-  }, [menuOpened]);
+  }, [menuOpened, dispatch]);
 
   useEffect(() => {
     if (width >= 1024) {
-      dispatch(setMenuToggle(false));
+      closeMenu();
     }
-  }, [width, dispatch]);
-
-  const openMenu = () => {
-    dispatch(setMenuToggle(!menuOpened));
-  };
-
-  const closeMenu = () => {
-    menuOpened && dispatch(setMenuToggle(false));
-  };
+  }, [dispatch, width]);
 
   return (
     <div
