@@ -9,12 +9,19 @@ const initialState: SettingsSliceTypes = {
     { title: 'Contact', url: '/' },
   ],
   auth: true,
+  menuOpened: false,
 };
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
-  reducers: {},
+  reducers: {
+    setMenuToggle: (state, action) => {
+      state.menuOpened = action.payload;
+    },
+  },
 });
+
+export const { setMenuToggle } = settingsSlice.actions;
 
 export default settingsSlice.reducer;

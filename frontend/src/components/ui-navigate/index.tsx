@@ -1,31 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MenuItem } from '../../redux/slices/settings/types';
-import { UIButton } from '../ui-button';
 import styles from './styles.module.scss';
 
 interface NavigateProps {
-  nav: MenuItem[];
-  currentUser: string;
-  auth: boolean;
+  nav?: MenuItem[];
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
-export const UINavigate: React.FC<NavigateProps> = ({ nav, currentUser, auth }) => {
+export const UINavigate: React.FC<NavigateProps> = ({ nav, children, onClick }) => {
   return (
     <nav className={styles.navigation}>
-      {auth ? (
-        <>
-          {nav.map((menu) => (
-            <Link to={menu.url}>{menu.title}</Link>
-          ))}
-          <Link to="/profile">{currentUser}</Link>
-          <Link to="/logout">Logout</Link>
-        </>
-      ) : (
-        <Link to="/login">
-          <UIButton size="sm">Login</UIButton>
+      {nav?.map((menu) => (
+        <Link to={menu.url} key={menu.title} onClick={onClick}>
+          {menu.title}
         </Link>
-      )}
+      ))}
+      {children}
     </nav>
   );
 };

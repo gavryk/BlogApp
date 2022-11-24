@@ -1,8 +1,15 @@
 .layout {
   position: relative;
+  transition: all 0.4s ease-in-out;
   &.login,
   &.register {
     background-color: var(--base--color--main);
+  }
+  &.menuOpened {
+    margin-right: 35%;
+    @media (max-width: 576px) {
+      margin-right: 0;
+    }
   }
 }
 

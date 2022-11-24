@@ -1,0 +1,40 @@
+.headerNavigation {
+  position: relative;
+  &.mobile {
+    nav {
+      position: fixed;
+      top: 0;
+      right: -35%;
+      width: 35%;
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      transition: all 0.4s ease-in-out;
+      background-color: var(--base--color--main);
+      padding-top: var(--base--spaces--3);
+      a {
+        text-transform: uppercase;
+        color: var(--base--color--black-2);
+        padding: var(--base--spaces--2) var(--base--spaces--4);
+        span {
+          color: var(--base--color--black-2);
+        }
+      }
+      @media (max-width: 576px) {
+        right: 0;
+        width: 100%;
+        transform: translateX(100%);
+        border-top: 60px solid var(--base--color--black-2);
+      }
+    }
+  }
+  &.menuActive {
+    nav {
+      right: 0;
+      @media (max-width: 576px) {
+        transform: translateX(0);
+      }
+    }
+  }
+}

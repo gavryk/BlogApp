@@ -6,4 +6,5 @@ export type MenuItem = {
 export interface SettingsSliceTypes {
   menu: MenuItem[];
   auth: boolean;
+  menuOpened: boolean;
 }
