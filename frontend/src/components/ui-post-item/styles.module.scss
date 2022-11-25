@@ -1,5 +1,6 @@
 .postItem {
   display: grid;
+  align-items: flex-start;
   grid-gap: 15px;
   .postImage {
     position: relative;

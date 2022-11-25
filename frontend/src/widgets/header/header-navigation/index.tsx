@@ -60,16 +60,16 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
       ref={navRef}>
       {auth ? (
         <UINavigate nav={nav} onClick={closeMenu}>
-          <Link to="/profile" onClick={openMenu}>
+          <Link to="/profile" onClick={closeMenu}>
             {currentUser}
           </Link>
-          <Link to="/logout" onClick={openMenu}>
+          <Link to="/logout" onClick={closeMenu}>
             Logout
           </Link>
         </UINavigate>
       ) : (
         <UINavigate>
-          <Link to="/login" onClick={openMenu}>
+          <Link to="/login" onClick={closeMenu}>
             {width < 1024 ? <span>Login</span> : <UIButton size="sm">Login</UIButton>}
           </Link>
         </UINavigate>
