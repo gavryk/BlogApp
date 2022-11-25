@@ -1,10 +1,15 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { UIIcon } from '../components/ui-icon';
+import { UIIcon } from '../components';
+import { postsSelector } from '../redux/slices/posts/selectors';
 import styles from '../styles/pages/Single.module.scss';
+import { Aside } from '../widgets';
 
 const Single: React.FC = () => {
+  const { posts } = useSelector(postsSelector);
+
   return (
     <div className={styles.singlePost}>
       <div className={styles.content}>
@@ -41,7 +46,7 @@ const Single: React.FC = () => {
         </div>
       </div>
       <div className="aside">
-        <span>Aside</span>
+        <Aside posts={posts} />
       </div>
     </div>
   );

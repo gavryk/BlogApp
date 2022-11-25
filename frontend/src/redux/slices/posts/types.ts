@@ -5,6 +5,6 @@ export type PostsSliceTypes = {
 export type PostTypes = {
   id: string;
   title: string;
-  desc: string;
+  desc?: string;
   img: string;
 };

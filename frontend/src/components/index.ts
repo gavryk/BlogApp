@@ -6,3 +6,5 @@ export * from './ui-button';
 export * from './ui-navigate';
 export * from './ui-burger';
 export * from './ui-grid';
+export * from './ui-icon';
+export * from './ui-post-item';

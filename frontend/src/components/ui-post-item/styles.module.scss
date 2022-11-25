@@ -1,7 +1,6 @@
 .postItem {
   display: grid;
   align-items: flex-start;
-  grid-gap: 15px;
   .postImage {
     position: relative;
     &:after {
@@ -34,7 +33,6 @@
   .postContent {
     p {
       font-size: var(--base--font--size-lg);
-      margin-bottom: var(--base--spaces--10);
     }
   }
   &.row {

@@ -2,13 +2,16 @@
   display: grid;
   grid-template-columns: 1fr 25%;
   grid-gap: var(--base--spaces--15);
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .content {
     .thumbnail {
       position: relative;
       &::after {
         content: '';
         display: block;
-        padding-bottom: 55.5%;
+        padding-bottom: 46.6%;
       }
       img {
         position: absolute;

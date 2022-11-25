@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { UIGrid } from '../components';
-import { UIPostItem } from '../components/ui-post-item';
+import { UIGrid, UIPostItem } from '../components';
 import { postsSelector } from '../redux/slices/posts/selectors';
 
 const Home: React.FC = () => {
