@@ -16,7 +16,7 @@ const Home: React.FC = () => {
               key={post.id}
               {...post}
               variant="row"
-              direction={index % 2 === 0 ? 'normal' : 'reverse'}
+              direction={index % 2 !== 0 ? 'normal' : 'reverse'}
             />
           ))}
         </UIGrid>
