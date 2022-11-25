@@ -1,0 +1,16 @@
+.icon {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--base--spaces--2);
+}
+.red {
+  background-color: var(--base--color--red);
+}
+.green {
+  background-color: var(--base--color--green);
+}
+.black {
+  background-color: var(--base--color--black);
+}
