@@ -58,22 +58,25 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
         [styles.mobile]: width < 1025,
       })}
       ref={navRef}>
-      {auth ? (
-        <UINavigate nav={nav} onClick={closeMenu}>
-          <Link to="/profile" onClick={closeMenu}>
-            {currentUser}
-          </Link>
-          <Link to="/logout" onClick={closeMenu}>
-            Logout
-          </Link>
-        </UINavigate>
-      ) : (
-        <UINavigate>
+      <UINavigate nav={nav} onClick={closeMenu}>
+        {auth ? (
+          <>
+            <Link to="/write" onClick={closeMenu}>
+              Add Post
+            </Link>
+            <Link to="/profile" onClick={closeMenu}>
+              {currentUser}
+            </Link>
+            <Link to="/logout" onClick={closeMenu}>
+              Logout
+            </Link>
+          </>
+        ) : (
           <Link to="/login" onClick={closeMenu}>
             {width < 1024 ? <span>Login</span> : <UIButton size="sm">Login</UIButton>}
           </Link>
-        </UINavigate>
-      )}
+        )}
+      </UINavigate>
       {width < 1024 && <UIBurger toggle={openMenu} isActive={menuOpened} />}
     </div>
   );
