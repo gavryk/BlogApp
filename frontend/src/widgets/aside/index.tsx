@@ -21,6 +21,7 @@ export const Aside: React.FC<AsideProps> = ({ posts }) => {
                 titleVariant="h5"
                 img={post.img}
                 variant="column"
+                imageBg={false}
                 key={`${post.title}_${post.id}`}
               />
             ))}
