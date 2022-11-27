@@ -1,0 +1,19 @@
+.root {
+  border: 1px solid var(--base--color--grey-6);
+  padding: var(--base--spaces--3);
+  display: flex;
+  flex-direction: column;
+  > span {
+    margin: var(--base--spaces--2) 0;
+  }
+  .image {
+    margin: var(--base--spaces--3) 0 var(--base--spaces--5);
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

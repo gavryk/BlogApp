@@ -39,8 +39,10 @@ export const UIInput = React.forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     return (
-      <div className={styles.UIInput}>
-        {label && <UILabel htmlFor={id ? id : ''}>{label}</UILabel>}
+      <div className={clsx(styles.UIInput, styles[type])}>
+        {label && type !== 'radio' && type !== 'checkbox' && (
+          <UILabel htmlFor={id ? id : ''}>{label}</UILabel>
+        )}
         <input
           id={id}
           type={type}
@@ -55,6 +57,9 @@ export const UIInput = React.forwardRef<HTMLInputElement, InputProps>(
           className={clsx(styles.input, { [styles.error]: error })}
           ref={ref}
         />
+        {label && (type === 'radio' || type === 'checkbox') && (
+          <UILabel htmlFor={id ? id : ''}>{label}</UILabel>
+        )}
         {type === 'search' && <FontAwesomeIcon icon={faMagnifyingGlass} />}
         {error && <span className={styles.errorTxt}>{error}</span>}
       </div>

@@ -1,0 +1,46 @@
+.shUploadInput {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: var(--base--color--main);
+  height: auto;
+  padding: var(--base--spaces--2);
+  label {
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+.root {
+  display: block;
+  width: 100%;
+  display: none;
+  ~ label {
+    cursor: pointer;
+  }
+  &.error {
+    border: 2px solid var(--base--color--red);
+    background-color: var(--base--color--red);
+    color: var(--base--color--white);
+    &::placeholder {
+      color: var(--base--color--white);
+    }
+  }
+  &:focus {
+    border: 1px solid var(--base--color--green);
+  }
+}
+
+.errorTxt {
+  display: block;
+  color: var(--base--color--red);
+  font-size: var(--base--font--size-sm);
+  margin-top: var(--base--space--1);
+}

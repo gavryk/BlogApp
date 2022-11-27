@@ -1,0 +1,10 @@
+.addPostRoot {
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  grid-gap: var(--base--spaces--6);
+  .right {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: var(--base--spaces--3);
+  }
+}

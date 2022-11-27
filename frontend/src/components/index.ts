@@ -8,3 +8,4 @@ export * from './ui-burger';
 export * from './ui-grid';
 export * from './ui-icon';
 export * from './ui-post-item';
+export * from './ui-image-uploader';

@@ -18,7 +18,13 @@ export const Footer: React.FC = () => {
       </div>
       <div className={styles.copyright}>
         <span>
-          Development By <a href="https://www.linkedin.com/in/oleg-gvozd-20a16116a/">Oleg Gvozd </a>
+          Development By{' '}
+          <a
+            href="https://www.linkedin.com/in/oleg-gvozd-20a16116a/"
+            target="_blank"
+            rel="noreferrer">
+            Oleg Gvozd{' '}
+          </a>
           © {yearTxt}
         </span>
       </div>

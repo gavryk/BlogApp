@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Single from './pages/Single';
 import { AnimatePresence } from 'framer-motion';
+import { Write } from './pages/Write';
 
 const App = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const App = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainLayout />}>
           <Route path="" element={<Home />} />
+          <Route path="/write" element={<Write />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/post/:id" element={<Single />} />
