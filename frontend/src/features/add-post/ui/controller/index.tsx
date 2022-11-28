@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { UIButton, UIImageUploader } from '../../../../components';
+import { ImageUpload } from '../../types';
 import styles from './styles.module.scss';
 
 export const PostController: React.FC = () => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState<ImageUpload>({
+    file: null,
+    imagePreviewUrl: '',
+    fileLoaded: false,
+  });
 
-  const setImage = (image: any) => {
-    setFile(image);
+  const setImage = (image: File) => {
+    let reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFile({ file: image, imagePreviewUrl: URL.createObjectURL(image), fileLoaded: true });
+    };
+
+    reader.readAsDataURL(image);
   };
 
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
+  const removeImage = () => {
+    setFile({ file: null, imagePreviewUrl: '', fileLoaded: false });
+  };
 
   return (
     <div className={styles.root}>
@@ -22,9 +33,13 @@ export const PostController: React.FC = () => {
       <span>
         <b>Visibility:</b> Public
       </span>
-      <div className={styles.image}>
-        <UIImageUploader onChange={setImage} label="upload image" id="file" />
-      </div>
+      <UIImageUploader
+        onChange={setImage}
+        label="upload image"
+        id="file"
+        file={file}
+        removeImage={removeImage}
+      />
       <div className={styles.buttons}>
         <UIButton variants="outlined" size="sm">
           Save as a draft

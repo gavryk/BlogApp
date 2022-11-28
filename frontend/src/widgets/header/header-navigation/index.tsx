@@ -49,6 +49,7 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
     if (width >= 1024) {
       closeMenu();
     }
+    // eslint-disable-next-line
   }, [dispatch, width]);
 
   return (
