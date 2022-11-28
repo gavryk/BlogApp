@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchRegister } from './ayncAuth';
+import { fetchLogin, fetchRegister } from './ayncAuth';
 import { SettingsSliceTypes } from './types';
 
 const initialState: SettingsSliceTypes = {
@@ -26,6 +26,17 @@ export const settingsSlice = createSlice({
     });
     builder.addCase(fetchRegister.rejected, (state) => {
       state.isLoaded = false;
+    });
+    builder.addCase(fetchLogin.pending, (state) => {
+      state.isLoaded = false;
+    });
+    builder.addCase(fetchLogin.fulfilled, (state) => {
+      state.isLoaded = true;
+      state.auth = true;
+    });
+    builder.addCase(fetchLogin.rejected, (state) => {
+      state.isLoaded = false;
+      state.auth = false;
     });
   },
 });
