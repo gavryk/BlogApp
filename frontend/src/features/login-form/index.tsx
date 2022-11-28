@@ -1,22 +1,32 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { UIButton, UIInput, UITypography } from '../../components';
+import { fetchLogin } from '../../redux/slices/settings/ayncAuth';
+import { settingsSelector } from '../../redux/slices/settings/selectors';
+import { LoginFormValues } from '../../redux/slices/settings/types';
+import { useAppDispatch } from '../../redux/store';
 import styles from './styles.module.scss';
 
-type FormValues = {
-  username: string;
-  password: string;
-};
-
 export const LoginForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { isLoaded, auth } = useSelector(settingsSelector);
+  const navigate = useNavigate();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  } = useForm<LoginFormValues>();
+  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
+    dispatch(fetchLogin(data));
+    if (auth) {
+      reset({ username: '', password: '' });
+      navigate('/');
+    }
+  };
   return (
     <motion.div
       initial={{ scale: 0 }}
