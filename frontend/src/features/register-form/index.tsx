@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -17,7 +18,14 @@ export const RegisterForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await axios.post('/api/auth/register', data);
+    } catch (err) {
+      console.log(data);
+    }
+  };
+
   return (
     <motion.div
       initial={{ scale: 0 }}
