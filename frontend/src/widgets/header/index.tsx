@@ -8,12 +8,12 @@ import { HeaderHavigation } from './header-navigation';
 
 export const Header: React.FC = () => {
   const containerRef = useRef(null);
-  const { menu, auth } = useSelector(settingsSelector);
+  const { menu } = useSelector(settingsSelector);
 
   return (
     <header className={styles.header} ref={containerRef}>
       <Logo src={LogoImg} alt="logo" link="/" size="lg" />
-      <HeaderHavigation nav={menu} currentUser="John Test" auth={auth} />
+      <HeaderHavigation nav={menu} />
     </header>
   );
 };

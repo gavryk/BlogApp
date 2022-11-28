@@ -5,7 +5,7 @@ export type MenuItem = {
 
 export interface SettingsSliceTypes {
   menu: MenuItem[];
-  auth: boolean;
+  auth: LoginFormValues | null;
   menuOpened: boolean;
   isLoaded: boolean;
 }
@@ -19,4 +19,11 @@ export type RegisterFormValues = {
 export type LoginFormValues = {
   username: string;
   password: string;
+};
+
+export type authProps = {
+  username: string;
+  email: string;
+  password: string;
+  img: string | null;
 };
