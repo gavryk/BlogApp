@@ -1,29 +1,29 @@
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { UIButton, UIInput, UITypography } from '../../components';
+import { fetchRegister } from '../../redux/slices/settings/ayncAuth';
+import { settingsSelector } from '../../redux/slices/settings/selectors';
+import { RegisterFormValues } from '../../redux/slices/settings/types';
+import { useAppDispatch } from '../../redux/store';
 import styles from './styles.module.scss';
 
-type FormValues = {
-  username: string;
-  email: string;
-  password: string;
-};
-
 export const RegisterForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { isLoaded } = useSelector(settingsSelector);
+  const navigate = useNavigate();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      await axios.post('/api/auth/register', data);
-    } catch (err) {
-      console.log(data);
-    }
+  } = useForm<RegisterFormValues>();
+  const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
+    dispatch(fetchRegister(data));
+    reset({ username: '', email: '', password: '' });
+    navigate('/login');
   };
 
   return (
@@ -57,7 +57,7 @@ export const RegisterForm: React.FC = () => {
           {...register('password', { required: 'Please enter your password.' })}
           error={errors.password && errors.password.message}
         />
-        <UIButton fluid type="submit">
+        <UIButton fluid type="submit" disabled={!isLoaded}>
           Register
         </UIButton>
         <span className={styles.notice}>
