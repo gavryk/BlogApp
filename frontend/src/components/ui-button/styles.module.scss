@@ -8,6 +8,10 @@
   outline: none;
   border: none;
   line-height: 1.3;
+  &:disabled {
+    background-color: var(--base--color--grey-6);
+    opacity: .5;
+  }
   &.fluid {
     width: 100%;
   }

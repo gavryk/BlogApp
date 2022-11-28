@@ -11,6 +11,7 @@ interface ButtonProps {
   variants?: 'contained' | 'outlined' | 'text';
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 }
 
 export const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -24,11 +25,13 @@ export const UIButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type = 'button',
       onClick,
       fluid,
+      disabled,
     },
     ref,
   ) => {
     return (
       <button
+        disabled={disabled}
         ref={ref}
         type={type}
         onClick={onClick}
