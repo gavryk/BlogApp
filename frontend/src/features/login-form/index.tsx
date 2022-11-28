@@ -22,7 +22,7 @@ export const LoginForm: React.FC = () => {
   } = useForm<LoginFormValues>();
   const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
     dispatch(fetchLogin(data));
-    if (auth) {
+    if (auth !== null) {
       reset({ username: '', password: '' });
       navigate('/');
     }
@@ -51,7 +51,7 @@ export const LoginForm: React.FC = () => {
           {...register('password', { required: 'Please enter your password.' })}
           error={errors.password && errors.password.message}
         />
-        <UIButton fluid type="submit">
+        <UIButton fluid type="submit" disabled={!isLoaded}>
           Login
         </UIButton>
         <span className={styles.notice}>

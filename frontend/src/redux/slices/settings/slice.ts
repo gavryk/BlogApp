@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getUserLS } from '../../../utils/getUserStorage';
 import { fetchLogin, fetchRegister } from './ayncAuth';
 import { SettingsSliceTypes } from './types';
 
 const initialState: SettingsSliceTypes = {
   menu: [{ title: 'Home', url: '/' }],
-  auth: false,
+  auth: getUserLS(),
   menuOpened: false,
   isLoaded: true,
 };
@@ -15,6 +16,9 @@ export const settingsSlice = createSlice({
   reducers: {
     setMenuToggle: (state, action) => {
       state.menuOpened = action.payload;
+    },
+    setCurrentUser: (state, action) => {
+      state.auth = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -30,13 +34,13 @@ export const settingsSlice = createSlice({
     builder.addCase(fetchLogin.pending, (state) => {
       state.isLoaded = false;
     });
-    builder.addCase(fetchLogin.fulfilled, (state) => {
+    builder.addCase(fetchLogin.fulfilled, (state, action) => {
       state.isLoaded = true;
-      state.auth = true;
+      state.auth = action.payload;
     });
     builder.addCase(fetchLogin.rejected, (state) => {
       state.isLoaded = false;
-      state.auth = false;
+      state.auth = null;
     });
   },
 });

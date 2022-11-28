@@ -5,23 +5,21 @@ import { Link } from 'react-router-dom';
 import { UIBurger, UIButton, UINavigate } from '../../../components';
 import { settingsSelector } from '../../../redux/slices/settings/selectors';
 import { setMenuToggle } from '../../../redux/slices/settings/slice';
-import { MenuItem } from '../../../redux/slices/settings/types';
+import { authProps, MenuItem } from '../../../redux/slices/settings/types';
 import { useUpdateDimension } from './model';
 import styles from './styles.module.scss';
 
 interface NavigateProps {
   nav: MenuItem[];
-  currentUser: string;
-  auth: boolean;
 }
 type MenuClick = MouseEvent & {
   path: Node[];
 };
 
-export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, auth }) => {
+export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const { menuOpened } = useSelector(settingsSelector);
+  const { menuOpened, auth } = useSelector(settingsSelector);
   const width = useUpdateDimension();
 
   const openMenu = () => {
@@ -60,13 +58,13 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav, currentUser, au
       })}
       ref={navRef}>
       <UINavigate nav={nav} onClick={closeMenu}>
-        {auth ? (
+        {auth !== null ? (
           <>
             <Link to="/write" onClick={closeMenu}>
               Add Post
             </Link>
             <Link to="/profile" onClick={closeMenu}>
-              {currentUser}
+              {auth.username}
             </Link>
             <Link to="/logout" onClick={closeMenu}>
               Logout
