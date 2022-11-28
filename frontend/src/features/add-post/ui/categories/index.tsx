@@ -2,15 +2,39 @@ import React from 'react';
 import { UIInput } from '../../../../components';
 import styles from './styles.module.scss';
 
-export const PostCategory: React.FC = () => {
+const categories = [
+  { value: 'art', label: 'Art' },
+  { value: 'science', label: 'Science' },
+  { value: 'technology', label: 'Technology' },
+  { value: 'cinema', label: 'Cinema' },
+  { value: 'food', label: 'Food' },
+];
+
+interface PostCategoryProps {
+  setCategory: (cat: string) => void;
+  category: string;
+}
+
+export const PostCategory: React.FC<PostCategoryProps> = ({ setCategory, category }) => {
+  const setCat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
+  };
+
   return (
     <div className={styles.root}>
       <h4>Category</h4>
-      <UIInput type="radio" name="cat" value="art" label="Art" id="art" />
-      <UIInput type="radio" name="cat" value="science" label="Science" id="science" />
-      <UIInput type="radio" name="cat" value="technology" label="Technology" id="technology" />
-      <UIInput type="radio" name="cat" value="cinema" label="Cinema" id="cinema" />
-      <UIInput type="radio" name="cat" value="food" label="Food" id="food" />
+      {categories.map((cat) => (
+        <UIInput
+          key={cat.value}
+          type="radio"
+          name="cat"
+          value={cat.value}
+          label={cat.label}
+          id={cat.value}
+          onChange={setCat}
+          checked={category === cat.value}
+        />
+      ))}
     </div>
   );
 };

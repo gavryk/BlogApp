@@ -8,7 +8,7 @@ import { UILabel } from '../ui-label';
 import styles from './styles.module.scss';
 
 interface InputUploadProps {
-  onChange: (files: any) => void;
+  onChange: (file: ImageUpload) => void;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   placeholder?: string;
   id?: string;
@@ -19,8 +19,7 @@ interface InputUploadProps {
   label?: string;
   accept?: string;
   multiple?: boolean;
-  file?: ImageUpload;
-  removeImage?: () => void;
+  file: ImageUpload;
 }
 
 export const UIImageUploader = React.forwardRef<HTMLInputElement, InputUploadProps>(
@@ -38,14 +37,23 @@ export const UIImageUploader = React.forwardRef<HTMLInputElement, InputUploadPro
       accept = 'image/*',
       multiple,
       file,
-      removeImage,
     },
     ref,
   ) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
-        onChange(e.target.files[0]);
+        let reader = new FileReader();
+        let image = e.target.files[0];
+        reader.onloadend = () => {
+          onChange({ file: image, imagePreviewUrl: URL.createObjectURL(image), fileLoaded: true });
+        };
+
+        reader.readAsDataURL(image);
       }
+    };
+
+    const removeImage = () => {
+      onChange({ file: null, imagePreviewUrl: '', fileLoaded: false });
     };
 
     return (
