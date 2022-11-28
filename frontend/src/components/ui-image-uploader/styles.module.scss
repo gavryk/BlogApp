@@ -1,13 +1,19 @@
 .shUploadInput {
   position: relative;
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   background-color: var(--base--color--main);
   height: auto;
   padding: var(--base--spaces--2);
+  width: 100%;
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 92.6%;
+  }
   label {
     cursor: pointer;
     font-weight: 700;
@@ -15,7 +21,8 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
   }
 }
 .root {

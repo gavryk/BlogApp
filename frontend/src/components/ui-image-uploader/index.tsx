@@ -1,4 +1,5 @@
-import { faRemove } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faRemove } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React from 'react';
 import { ImageUpload } from '../../features/add-post/types';
@@ -62,7 +63,7 @@ export const UIImageUploader = React.forwardRef<HTMLInputElement, InputUploadPro
           <div className={styles.shUploadInput}>
             {label && (
               <UILabel htmlFor={id ? id : ''}>
-                <span>{label}</span>
+                <FontAwesomeIcon icon={faPlusCircle} color="#fff" size="2xl" />
               </UILabel>
             )}
             <input
