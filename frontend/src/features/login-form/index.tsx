@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { UIButton, UIInput, UITypography } from '../../components';
@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { isLoaded, auth } = useSelector(settingsSelector);
+  const { isLoaded, auth, errorDB } = useSelector(settingsSelector);
   const navigate = useNavigate();
   const {
     register,
@@ -20,13 +20,19 @@ export const LoginForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormValues>();
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
+  const onSubmit = (data: LoginFormValues) => {
     dispatch(fetchLogin(data));
-    if (auth !== null) {
+    if (auth !== null && !errorDB) {
       reset({ username: '', password: '' });
-      navigate('/');
     }
   };
+
+  useEffect(() => {
+    if (auth !== null && !errorDB) {
+      navigate('/');
+    }
+  }, [auth, errorDB, navigate]);
+
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -54,6 +60,7 @@ export const LoginForm: React.FC = () => {
         <UIButton fluid type="submit" disabled={!isLoaded}>
           Login
         </UIButton>
+        <span className={styles.errorDB}>{errorDB as React.ReactNode}</span>
         <span className={styles.notice}>
           Don't you have an account? <Link to="/register">Register</Link>
         </span>

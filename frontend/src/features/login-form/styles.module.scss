@@ -18,3 +18,10 @@
     }
   }
 }
+
+.errorDB {
+  color: var(--base--color--red);
+  display: block;
+  text-align: center;
+  padding: var(--base--spaces--2) 0;
+}

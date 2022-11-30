@@ -3,11 +3,13 @@
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  a {
+  a,
+  span {
     color: var(--base--color--black-2);
     text-transform: uppercase;
     padding: 0 var(--base--spaces--3);
     transition: color 0.4s ease-in-out;
+    cursor: pointer;
     &:hover {
       color: var(--base--color--main);
     }
