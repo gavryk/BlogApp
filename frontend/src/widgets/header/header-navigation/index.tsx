@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { UIBurger, UIButton, UINavigate } from '../../../components';
+import { fetchLogout } from '../../../redux/slices/settings/ayncAuth';
 import { settingsSelector } from '../../../redux/slices/settings/selectors';
 import { setMenuToggle } from '../../../redux/slices/settings/slice';
-import { authProps, MenuItem } from '../../../redux/slices/settings/types';
+import { MenuItem } from '../../../redux/slices/settings/types';
+import { useAppDispatch } from '../../../redux/store';
 import { useUpdateDimension } from './model';
 import styles from './styles.module.scss';
 
@@ -18,7 +20,7 @@ type MenuClick = MouseEvent & {
 
 export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
   const navRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { menuOpened, auth } = useSelector(settingsSelector);
   const width = useUpdateDimension();
 
@@ -28,6 +30,11 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
 
   const closeMenu = () => {
     menuOpened && dispatch(setMenuToggle(false));
+  };
+
+  const logOut = () => {
+    closeMenu();
+    dispatch(fetchLogout());
   };
 
   useEffect(() => {
@@ -66,9 +73,7 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
             <Link to="/profile" onClick={closeMenu}>
               {auth.username}
             </Link>
-            <Link to="/logout" onClick={closeMenu}>
-              Logout
-            </Link>
+            <span onClick={logOut}>Logout</span>
           </>
         ) : (
           <Link to="/login" onClick={closeMenu}>

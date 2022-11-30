@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 export const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { isLoaded } = useSelector(settingsSelector);
+  const { isLoaded, errorDB } = useSelector(settingsSelector);
   const navigate = useNavigate();
   const {
     register,
@@ -22,8 +22,10 @@ export const RegisterForm: React.FC = () => {
   } = useForm<RegisterFormValues>();
   const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
     dispatch(fetchRegister(data));
-    reset({ username: '', email: '', password: '' });
-    navigate('/login');
+    if (errorDB) {
+      reset({ username: '', email: '', password: '' });
+      navigate('/login');
+    }
   };
 
   return (
@@ -60,6 +62,7 @@ export const RegisterForm: React.FC = () => {
         <UIButton fluid type="submit" disabled={!isLoaded}>
           Register
         </UIButton>
+        <span className={styles.errorDB}>{errorDB as React.ReactNode}</span>
         <span className={styles.notice}>
           Do you have an account? <Link to="/login">Login</Link>
         </span>

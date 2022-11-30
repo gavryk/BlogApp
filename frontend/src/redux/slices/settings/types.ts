@@ -8,6 +8,7 @@ export interface SettingsSliceTypes {
   auth: LoginFormValues | null;
   menuOpened: boolean;
   isLoaded: boolean;
+  errorDB: string | false | undefined | unknown;
 }
 
 export type RegisterFormValues = {
