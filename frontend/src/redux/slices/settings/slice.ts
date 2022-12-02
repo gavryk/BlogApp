@@ -6,7 +6,7 @@ import { SettingsSliceTypes } from './types';
 
 const initialState: SettingsSliceTypes = {
   menu: [
-    { title: 'Art', url: '?category=art' },
+    { title: 'Art', url: 'art' },
     { title: 'Science', url: 'science' },
     { title: 'Technology', url: 'technology' },
     { title: 'Cinema', url: 'cinema' },

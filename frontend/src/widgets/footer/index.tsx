@@ -47,6 +47,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-function setCat(url: string): void {
-  throw new Error('Function not implemented.');
-}

@@ -5,7 +5,7 @@ export const fetchPosts = createAsyncThunk('auth/fetchPosts', async (params: str
   console.log(params);
 
   try {
-    const { data } = await axios.get(`/api/posts${params}`);
+    const { data } = await axios.get(`/api/posts?category=${params}`);
     return data;
   } catch (err) {
     console.log(err);

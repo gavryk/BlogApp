@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { UIGrid, UIPostItem, UITypography } from '../components';
 import { fetchPosts } from '../redux/slices/posts/asyncPosts';
 import { postsSelector } from '../redux/slices/posts/selectors';
+import { settingsSelector } from '../redux/slices/settings/selectors';
 import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const { posts, activeCat } = useSelector(postsSelector);
+  const { isLoaded } = useSelector(settingsSelector);
 
   useEffect(() => {
     dispatch(fetchPosts(activeCat));
@@ -15,7 +17,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {posts ? (
+      {posts && (
         <UIGrid columns={1} gridGap={20}>
           {posts.map((post, index) => (
             <UIPostItem
@@ -26,10 +28,6 @@ const Home: React.FC = () => {
             />
           ))}
         </UIGrid>
-      ) : (
-        <UITypography variant="h2" textAlign="center" fontWeight="bold">
-          Post Not Found! Please try change Category
-        </UITypography>
       )}
     </div>
   );
