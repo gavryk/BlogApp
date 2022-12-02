@@ -26,13 +26,23 @@ const Single: React.FC = () => {
         const res = await axios.get(`/api/posts/${id}`);
         setPost(res.data);
         dispatch(setLoading(true));
-        console.log(res.data);
       } catch (err) {
         alert('Oops, something wrong...');
       }
     }
     fetchSinglePost();
   }, [id, dispatch, navigate]);
+
+  const deletePost = async (id: string | undefined) => {
+    dispatch(setLoading(false));
+    try {
+      await axios.delete(`/api/posts/${id}`);
+      navigate('/');
+      dispatch(setLoading(true));
+    } catch (err) {
+      alert('Oops, something wrong...');
+    }
+  };
 
   return (
     <div className={styles.singlePost}>
@@ -59,7 +69,7 @@ const Single: React.FC = () => {
               <Link to={`/write?edit=2`}>
                 <UIIcon icon={faEdit} color="green" size="sm" />
               </Link>
-              <UIIcon icon={faTrash} color="red" size="sm" />
+              <UIIcon pointer onClick={() => deletePost(id)} icon={faTrash} color="red" size="sm" />
             </div>
           )}
         </div>
