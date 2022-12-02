@@ -3,17 +3,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React from 'react';
 import styles from './styles.module.scss';
+import type * as CSS from 'csstype';
 
 type IconProps = {
   icon: IconProp;
   color?: 'red' | 'green' | 'black';
   size?: SizeProp;
   onClick?: () => void;
+  pointer?: boolean;
 };
 
-export const UIIcon: React.FC<IconProps> = ({ icon, color = 'green', onClick, size }) => {
+export const UIIcon: React.FC<IconProps> = ({ icon, color = 'green', onClick, size, pointer }) => {
+  const s: CSS.Properties = {
+    cursor: `${pointer && 'pointer'}`,
+  };
   return (
     <div
+      style={s}
       onClick={onClick}
       className={clsx(styles.icon, {
         [styles.red]: color === 'red',
