@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UIBurger, UIButton, UINavigate } from '../../../components';
+import { setCategory } from '../../../redux/slices/posts/slice';
 import { fetchLogout } from '../../../redux/slices/settings/ayncAuth';
 import { settingsSelector } from '../../../redux/slices/settings/selectors';
 import { setMenuToggle } from '../../../redux/slices/settings/slice';
@@ -21,6 +22,7 @@ type MenuClick = MouseEvent & {
 export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { menuOpened, auth } = useSelector(settingsSelector);
   const width = useUpdateDimension();
 
@@ -57,6 +59,11 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
     // eslint-disable-next-line
   }, [dispatch, width]);
 
+  const setCat = (category: string) => {
+    dispatch(setCategory(category));
+    navigate('/');
+  };
+
   return (
     <div
       className={clsx(styles.headerNavigation, {
@@ -64,9 +71,14 @@ export const HeaderHavigation: React.FC<NavigateProps> = ({ nav }) => {
         [styles.mobile]: width < 1025,
       })}
       ref={navRef}>
-      <UINavigate nav={nav} onClick={closeMenu}>
+      <UINavigate onClick={closeMenu}>
         {auth !== null ? (
           <>
+            {nav.map((link, index) => (
+              <span key={`${index}_${link.url}`} onClick={() => setCat(link.url)}>
+                {link.title}
+              </span>
+            ))}
             <Link to="/write" onClick={closeMenu}>
               Add Post
             </Link>

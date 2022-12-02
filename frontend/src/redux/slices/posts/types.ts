@@ -1,5 +1,6 @@
 export type PostsSliceTypes = {
   posts: PostTypes[];
+  activeCat: string;
 };
 
 export type PostTypes = {
@@ -7,4 +8,7 @@ export type PostTypes = {
   title: string;
   desc?: string;
   img: string;
+  date?: string;
+  uid?: string;
+  category?: string;
 };
