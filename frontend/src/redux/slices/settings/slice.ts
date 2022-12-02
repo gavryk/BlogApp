@@ -1,10 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getUserLS } from '../../../utils/getUserStorage';
+import { fetchPosts } from '../posts/asyncPosts';
 import { fetchLogin, fetchRegister, fetchLogout } from './ayncAuth';
 import { SettingsSliceTypes } from './types';
 
 const initialState: SettingsSliceTypes = {
-  menu: [{ title: 'Home', url: '/' }],
+  menu: [
+    { title: 'Art', url: '?category=art' },
+    { title: 'Science', url: 'science' },
+    { title: 'Technology', url: 'technology' },
+    { title: 'Cinema', url: 'cinema' },
+    { title: 'Design', url: 'design' },
+    { title: 'Food', url: 'food' },
+  ],
   auth: getUserLS(),
   menuOpened: false,
   isLoaded: true,
@@ -58,6 +66,15 @@ export const settingsSlice = createSlice({
       state.auth = null;
     });
     builder.addCase(fetchLogout.rejected, (state) => {
+      state.isLoaded = false;
+    });
+    builder.addCase(fetchPosts.pending, (state) => {
+      state.isLoaded = false;
+    });
+    builder.addCase(fetchPosts.fulfilled, (state) => {
+      state.isLoaded = true;
+    });
+    builder.addCase(fetchPosts.rejected, (state) => {
       state.isLoaded = false;
     });
   },
