@@ -11,4 +11,6 @@ export type PostTypes = {
   date?: string;
   uid?: string;
   category?: string;
+  userImage?: string;
+  username?: string;
 };
