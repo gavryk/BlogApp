@@ -2,8 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchPosts = createAsyncThunk('auth/fetchPosts', async (params: string) => {
-  console.log(params);
-
   try {
     const { data } = await axios.get(`/api/posts?category=${params}`);
     return data;

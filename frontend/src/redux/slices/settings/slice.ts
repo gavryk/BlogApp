@@ -32,6 +32,9 @@ export const settingsSlice = createSlice({
     setError: (state, action) => {
       state.errorDB = action.payload;
     },
+    setLoading: (state, action) => {
+      state.isLoaded = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRegister.pending, (state) => {
@@ -80,6 +83,6 @@ export const settingsSlice = createSlice({
   },
 });
 
-export const { setMenuToggle } = settingsSlice.actions;
+export const { setMenuToggle, setLoading, setCurrentUser, setError } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
