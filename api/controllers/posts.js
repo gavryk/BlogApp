@@ -9,6 +9,7 @@ export const getPosts = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
 export const getPost = (req, res) => {
   const q =
     'SELECT p.id, `username`, `title`, `desc`, p.img, u.img AS userImage, `category`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ?';
@@ -23,6 +24,7 @@ export const getPost = (req, res) => {
 export const addPost = (req, res) => {
   res.json('from controller');
 };
+
 export const deletePost = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json('Not Authenticated!');
@@ -40,6 +42,7 @@ export const deletePost = (req, res) => {
     });
   });
 };
+
 export const updatePost = (req, res) => {
   res.json('from controller');
 };

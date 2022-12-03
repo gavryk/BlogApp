@@ -8,6 +8,7 @@
   .content {
     .thumbnail {
       position: relative;
+      background-color: var(--base--color--main);
       &::after {
         content: '';
         display: block;
