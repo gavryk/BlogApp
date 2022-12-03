@@ -9,4 +9,3 @@ export const db = mysql.createConnection({
   password: process.env.PASSWORD_KEY,
   database: process.env.DB_KEY,
 });
-//Test Clean History github
