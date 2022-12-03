@@ -48,7 +48,7 @@ const Single: React.FC = () => {
     <div className={styles.singlePost}>
       <div className={styles.content}>
         <div className={styles.thumbnail}>
-          <img src={post?.img} alt={post?.title} />
+          {post?.img && <img src={post?.img} alt={post?.title} />}
         </div>
         <div className={styles.authorWrap}>
           <div className={styles.author}>
@@ -76,7 +76,10 @@ const Single: React.FC = () => {
         <div className="text">{post?.desc}</div>
       </div>
       <div className="aside">
-        <Aside posts={posts} />
+        <Aside
+          posts={posts.filter((item) => Number(item.id) !== Number(id))}
+          category={post?.category}
+        />
       </div>
     </div>
   );
