@@ -11,6 +11,7 @@ import { setLoading } from '../redux/slices/settings/slice';
 import styles from '../styles/pages/Single.module.scss';
 import { getText } from '../utils/getText';
 import { Aside } from '../widgets';
+import { decode as base64_decode, encode as base64_encode } from 'base-64';
 
 const Single: React.FC = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Single: React.FC = () => {
     <div className={styles.singlePost}>
       <div className={styles.content}>
         <div className={styles.thumbnail}>
-          {post?.img && <img src={`../uploads/posts-images/${post.img}`} alt={post?.title} />}
+          {post?.img && <img src={base64_decode(post.img)} alt={post?.title} />}
         </div>
         <div className={styles.authorWrap}>
           <div className={styles.author}>

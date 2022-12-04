@@ -25,7 +25,7 @@ const Home: React.FC = () => {
               id={post.id}
               title={post.title}
               desc={post.desc}
-              img={`./uploads/posts-images/${post.img}`}
+              img={post.img}
               variant="row"
               direction={index % 2 !== 0 ? 'normal' : 'reverse'}
             />
