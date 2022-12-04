@@ -1,5 +1,5 @@
 export type ImageUpload = {
-  file: File | null;
+  file: File | null | any;
   imagePreviewUrl: string;
   fileLoaded: boolean;
 };

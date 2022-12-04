@@ -43,13 +43,15 @@ export const UIImageUploader = React.forwardRef<HTMLInputElement, InputUploadPro
   ) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
-        let reader = new FileReader();
         let image = e.target.files[0];
-        reader.onloadend = () => {
-          onChange({ file: image, imagePreviewUrl: URL.createObjectURL(image), fileLoaded: true });
-        };
+        const formData = new FormData();
+        formData.append('file', e.target.files[0]);
 
-        reader.readAsDataURL(image);
+        onChange({
+          file: formData,
+          imagePreviewUrl: URL.createObjectURL(image),
+          fileLoaded: true,
+        });
       }
     };
 

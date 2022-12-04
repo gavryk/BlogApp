@@ -9,6 +9,7 @@ import { PostTypes } from '../redux/slices/posts/types';
 import { settingsSelector } from '../redux/slices/settings/selectors';
 import { setLoading } from '../redux/slices/settings/slice';
 import styles from '../styles/pages/Single.module.scss';
+import { getText } from '../utils/getText';
 import { Aside } from '../widgets';
 
 const Single: React.FC = () => {
@@ -48,7 +49,7 @@ const Single: React.FC = () => {
     <div className={styles.singlePost}>
       <div className={styles.content}>
         <div className={styles.thumbnail}>
-          {post?.img && <img src={post?.img} alt={post?.title} />}
+          {post?.img && <img src={`../uploads/posts-images/${post.img}`} alt={post?.title} />}
         </div>
         <div className={styles.authorWrap}>
           <div className={styles.author}>
@@ -61,19 +62,19 @@ const Single: React.FC = () => {
             </div>
             <div className={styles.name}>
               <h4>{post?.username}</h4>
-              <span>Posted 2 days ago</span>
+              <span>Posted: {post?.date}</span>
             </div>
           </div>
           {auth !== null && post?.username === auth?.username && (
             <div className={styles.editPost}>
-              <Link to={`/write?edit=2`}>
+              <Link to={`/write?edit=${id}`} state={post}>
                 <UIIcon icon={faEdit} color="green" size="sm" />
               </Link>
               <UIIcon pointer onClick={() => deletePost(id)} icon={faTrash} color="red" size="sm" />
             </div>
           )}
         </div>
-        <div className="text">{post?.desc}</div>
+        <div className="text">{getText(post?.desc)}</div>
       </div>
       <div className="aside">
         <Aside

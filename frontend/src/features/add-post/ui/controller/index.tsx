@@ -5,15 +5,22 @@ import styles from './styles.module.scss';
 
 interface PostControllerProps {
   setImage: (file: ImageUpload) => void;
+  handleSendPost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   file: ImageUpload;
+  edit: boolean;
 }
 
-export const PostController: React.FC<PostControllerProps> = ({ setImage, file }) => {
+export const PostController: React.FC<PostControllerProps> = ({
+  setImage,
+  file,
+  handleSendPost,
+  edit,
+}) => {
   return (
     <div className={styles.root}>
       <h4>Publish</h4>
       <span>
-        <b>Status:</b> Draft
+        <b>Status:</b> {edit ? 'Publish' : 'Draft'}
       </span>
       <span>
         <b>Visibility:</b> Public
@@ -23,7 +30,9 @@ export const PostController: React.FC<PostControllerProps> = ({ setImage, file }
         <UIButton variants="outlined" size="sm">
           Save as a draft
         </UIButton>
-        <UIButton size="sm">Update</UIButton>
+        <UIButton onClick={handleSendPost} size="sm">
+          {!edit ? 'Publish' : 'Update'}
+        </UIButton>
       </div>
     </div>
   );

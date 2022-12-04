@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PostTypes } from '../../redux/slices/posts/types';
+import { getText } from '../../utils/getText';
 import { UIButton } from '../ui-button';
 import { UIImage } from '../ui-image';
 import { UITypography } from '../ui-typography';
@@ -36,7 +37,7 @@ export const UIPostItem: React.FC<PostProp> = ({
         <UITypography variant={titleVariant} fontWeight="bold">
           {title}
         </UITypography>
-        {desc && <UITypography variant="body">{desc}</UITypography>}
+        {desc && <UITypography variant="body">{getText(desc)}</UITypography>}
         <Link to={`/post/${id}`}>
           <UIButton>Read More</UIButton>
         </Link>
