@@ -7,7 +7,6 @@ import { useAppDispatch } from '../../redux/store';
 import styles from './styles.module.scss';
 import { ImageUpload } from './types';
 import { PostCategory, PostController, PostEditor } from './ui';
-import { decode as base64_decode, encode as base64_encode } from 'base-64';
 
 export const AddPost: React.FC = () => {
   const postState = useLocation().state;
@@ -26,9 +25,20 @@ export const AddPost: React.FC = () => {
     setFile(imageFile);
   };
 
+  const uploadImage = async () => {
+    if (file.file !== null) {
+      try {
+        const res = await axios.post(`/api/upload`, file.file);
+        return res.data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   const handleSendPost = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let encodedImage = base64_encode(file.imagePreviewUrl);
+    const imgUrl = await uploadImage();
     dispatch(setLoading(false));
     try {
       postState
@@ -36,13 +46,13 @@ export const AddPost: React.FC = () => {
             title,
             desc,
             category,
-            img: file.fileLoaded ? encodedImage : '',
+            img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
           })
         : await axios.post(`/api/posts`, {
             title,
             desc,
             category,
-            img: file.fileLoaded ? encodedImage : '',
+            img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
             date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
           });
       dispatch(setLoading(true));

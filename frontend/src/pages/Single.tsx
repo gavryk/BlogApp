@@ -50,7 +50,7 @@ const Single: React.FC = () => {
     <div className={styles.singlePost}>
       <div className={styles.content}>
         <div className={styles.thumbnail}>
-          {post?.img && <img src={base64_decode(post.img)} alt={post?.title} />}
+          {post?.img && <img src={`../uploads/posts-images/${post.img}`} alt={post?.title} />}
         </div>
         <div className={styles.authorWrap}>
           <div className={styles.author}>
