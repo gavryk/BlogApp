@@ -1,5 +1,6 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -11,7 +12,6 @@ import { setLoading } from '../redux/slices/settings/slice';
 import styles from '../styles/pages/Single.module.scss';
 import { getText } from '../utils/getText';
 import { Aside } from '../widgets';
-import { decode as base64_decode, encode as base64_encode } from 'base-64';
 
 const Single: React.FC = () => {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const Single: React.FC = () => {
             </div>
             <div className={styles.name}>
               <h4>{post?.username}</h4>
-              <span>Posted: {post?.date}</span>
+              <span>Posted: {post?.date && moment(post?.date).format('D/MM/YYYY')}</span>
             </div>
           </div>
           {auth !== null && post?.username === auth?.username && (

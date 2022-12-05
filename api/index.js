@@ -35,6 +35,21 @@ app.post('/api/upload', upload.single('file'), function (req, res) {
   res.status(200).json(file.filename);
 });
 
+// app.delete('/api/upload/:filename', (req, res) => {
+//   let fileName = req.params.filename;
+//   fs.unlink('./public/uploads/posts-images/' + fileName, (err) => {
+//     if (err) {
+//       res.status(500).send({
+//         message: 'Could not delete the file. ' + err,
+//       });
+//     }
+
+//     res.status(200).send({
+//       message: 'File is deleted.',
+//     });
+//   });
+// });
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);

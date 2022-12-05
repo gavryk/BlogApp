@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { fetchAddPost, fetchUpdatePost } from '../../redux/slices/posts/asyncPosts';
 import { setLoading } from '../../redux/slices/settings/slice';
 import { useAppDispatch } from '../../redux/store';
 import styles from './styles.module.scss';
@@ -42,19 +43,24 @@ export const AddPost: React.FC = () => {
     dispatch(setLoading(false));
     try {
       postState
-        ? await axios.put(`/api/posts/${postState.id}`, {
-            title,
-            desc,
-            category,
-            img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
-          })
-        : await axios.post(`/api/posts`, {
-            title,
-            desc,
-            category,
-            img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
-            date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
-          });
+        ? dispatch(
+            fetchUpdatePost({
+              id: postState.id,
+              title,
+              desc,
+              category,
+              img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
+            }),
+          )
+        : dispatch(
+            fetchAddPost({
+              title,
+              desc,
+              category,
+              img: file.fileLoaded ? imgUrl.replace(' ', '_') : '',
+              date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+            }),
+          );
       dispatch(setLoading(true));
       navigate('/');
     } catch (err) {
